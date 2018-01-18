@@ -8,7 +8,8 @@ import io.reactivex.Observer
 import io.reactivex.android.MainThreadDisposable
 
 /**
- * Created by tomorth on 1/12/2018.
+ * Creates an Observable to subscribe to the TextView's afterTextChanged event
+ * @param view The TextView to use
  */
 class AfterTextChangedObservable(private val view: TextView) : Observable<Editable?>() {
     override fun subscribeActual(observer: Observer<in Editable?>?) {
@@ -17,6 +18,11 @@ class AfterTextChangedObservable(private val view: TextView) : Observable<Editab
         observer?.onSubscribe(listener)
     }
 
+    /**
+     * Creates the Rx Listener
+     * @param view The view to use
+     * @param observer The observer for the Observable
+     */
     class Listener(private val view: TextView, private val observer: Observer<in Editable?>?) : MainThreadDisposable(), TextWatcher {
         override fun afterTextChanged(p0: Editable?) {
             observer?.onNext(p0)

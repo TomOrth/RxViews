@@ -1,0 +1,7 @@
+siteUrl = https://www.github.com/TomOrth/RxViews
+gitUrl = https://www.github.com/TomOrth/RxViews.git
+version = 1.0.0
+groupId = com.tomorth
+licenses = ['MIT'] // or something else
+id = rxviews
+name = rxviews // actually not used

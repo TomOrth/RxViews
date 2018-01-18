@@ -7,7 +7,9 @@ import io.reactivex.android.MainThreadDisposable
 import com.tomorth.rxviews.internal.Notifcation
 
 /**
- * Created by tomorth on 1/12/2018.
+ * Long Click Observable for a View's OnClickListener
+ * @param view The view to be used
+ * @return An Observable to subscribe to the OnClickListener
  */
 class SingleClickObservable(private val view: View) : Observable<Any>() {
     override fun subscribeActual(observer: Observer<in Any>?) {
@@ -16,6 +18,11 @@ class SingleClickObservable(private val view: View) : Observable<Any>() {
         observer?.onSubscribe(listener)
     }
 
+    /**
+     * Creates the Rx Listener
+     * @param view The view to use
+     * @param observer The observer for the Observable
+     */
     class Listener(private val view: View, private val observer: Observer<in Any>?) : MainThreadDisposable(), View.OnClickListener {
         override fun onDispose() {
             view.setOnClickListener(null)
